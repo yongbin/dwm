@@ -19,7 +19,7 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	dwm-6.0-pertag.diff
 	)
 md5sums=('8bb00d4142259beb11e13473b81c0857'
-         '6c07c4d8c76bc2118e8ce203df524344'
+         '939615f29a8e7fb7c8220905e78dfc13'
          '939f403a71b6e85261d09fc3412269ee'
          'be94530c8592342bd99c7b5eeafdd176')
 
