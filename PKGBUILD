@@ -20,13 +20,15 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 _patches=(
           01-statuscolours.diff
           02-monoclecount.diff
+          03-noborder.diff
          )
 source=(${source[@]} ${_patches[@]})
 md5sums=('8bb00d4142259beb11e13473b81c0857'
          '4228200e2d61ec54d7994684657eff7b'
          '939f403a71b6e85261d09fc3412269ee'
          '57b1a8f21b61c55f906d7cc075111613'
-         'e3faeea09a554bbbce29c4d480b0ca41')
+         'e3faeea09a554bbbce29c4d480b0ca41'
+         '1f0244803c0188f1b6f4e5794e7f5ca2')
 
 build() {
   cd $srcdir/$pkgname-$pkgver
