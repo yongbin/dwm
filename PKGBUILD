@@ -16,19 +16,10 @@ install=dwm.install
 source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	config.h
 	dwm.desktop
-	dwm-6.0-pertag.diff
 	)
 md5sums=('8bb00d4142259beb11e13473b81c0857'
-         '20bda0b6469ac4129a2dcf4541a2d5a2'
-         '939f403a71b6e85261d09fc3412269ee'
-         'be94530c8592342bd99c7b5eeafdd176')
-
-prepare() {
-  cd $srcdir/$pkgname-$pkgver
-  msg "Patch to dwm-6.0-pertag.diff"
-  patch -Np1 -i "${srcdir}/dwm-6.0-pertag.diff"
-  echo
-}
+         '309eab7c23e67eabfbff8472d22dd568'
+         '939f403a71b6e85261d09fc3412269ee')
 
 build() {
   cd $srcdir/$pkgname-$pkgver
