@@ -17,12 +17,21 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	config.h
 	dwm.desktop
 	)
+_patches=(01-statuscolours.diff)
+source=(${source[@]} ${_patches[@]})
 md5sums=('8bb00d4142259beb11e13473b81c0857'
-         '913427c3ce90da566b76cd020d36a346'
-         '939f403a71b6e85261d09fc3412269ee')
+         '4228200e2d61ec54d7994684657eff7b'
+         '939f403a71b6e85261d09fc3412269ee'
+         '57b1a8f21b61c55f906d7cc075111613')
 
 build() {
   cd $srcdir/$pkgname-$pkgver
+
+  for p in "${_patches[@]}"; do
+    echo "=> $p"
+    patch < ../$p || return 1
+  done
+
   cp $srcdir/config.h config.h
   sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
   sed -i 's/^CFLAGS = -g/#CFLAGS += -g/g' config.mk

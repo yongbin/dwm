@@ -1,15 +1,29 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char font[]            = "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*";
-static const char normbordercolor[] = "#444444";
-static const char normbgcolor[]     = "#222222";
-static const char normfgcolor[]     = "#bbbbbb";
-static const char selbordercolor[]  = "#005577";
-static const char selbgcolor[]      = "#005577";
-static const char selfgcolor[]      = "#eeeeee";
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const char font[]            = "-*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*";
+#define NUMCOLORS 3
+static const char colors[NUMCOLORS][ColLast][9] = {
+  // border foreground background
+  { "#282a2e", "#bbbbbb", "#222222" }, // 1 = default normal + yellow border
+  { "#f0c674", "#eeeeee", "#005577" }, // 2 = default selected + yellow border
+  { "#dc322f", "#1d1f21", "#f0c674" }, // 3 = urgent (black on yellow)
+  /* wongdev's color set
+  { "#282a2e", "#373b41", "#1d1f21" }, // 1 = normal (grey on black)
+  { "#f0c674", "#c5c8c6", "#1d1f21" }, // 2 = selected (white on black)
+  { "#dc322f", "#1d1f21", "#f0c674" }, // 3 = urgent (black on yellow)
+  { "#282a2e", "#282a2e", "#1d1f21" }, // 4 = darkgrey on black (for glyphs)
+  { "#282a2e", "#1d1f21", "#282a2e" }, // 5 = black on darkgrey (for glyphs)
+  { "#282a2e", "#cc6666", "#1d1f21" }, // 6 = red on black
+  { "#282a2e", "#de935f", "#1d1f21" }, // 8 = orange on black
+  { "#282a2e", "#f0c674", "#282a2e" }, // 9 = yellow on darkgrey
+  { "#282a2e", "#81a2be", "#282a2e" }, // A = blue on darkgrey
+  { "#282a2e", "#b294bb", "#282a2e" }, // B = magenta on darkgrey
+  { "#282a2e", "#8abeb7", "#282a2e" }, // C = cyan on darkgrey
+  */
+};
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int snap      = 8;        /* snap pixel */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
@@ -46,11 +60,11 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char  *dmenucmd[]     = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
 static const char *termcmd[]  = { "urxvtc", NULL };
 
 /* custom commands */
-static const char *dmenuterminalcmd[] = { "/home/yongbin/bin/dmenu_terminal", "-b", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *dmenuterminalcmd[] = { "/home/yongbin/bin/dmenu_terminal", "-b", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
