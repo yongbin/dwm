@@ -22,15 +22,17 @@ _patches=(
           02-monoclecount.diff
           03-noborder.diff
           04-centredfloating.diff
+          05-scratchpad.diff
          )
 source=(${source[@]} ${_patches[@]})
 md5sums=('8bb00d4142259beb11e13473b81c0857'
-         '4228200e2d61ec54d7994684657eff7b'
+         '0cd42560c993daa06a0ffc994f69906c'
          '939f403a71b6e85261d09fc3412269ee'
          '57b1a8f21b61c55f906d7cc075111613'
          'e3faeea09a554bbbce29c4d480b0ca41'
          '1f0244803c0188f1b6f4e5794e7f5ca2'
-         'ed11483bfccbf65ff9714c0ca4e7bb23')
+         'ed11483bfccbf65ff9714c0ca4e7bb23'
+         'bc6240f3adadf604a450f6375badec61')
 
 build() {
   cd $srcdir/$pkgname-$pkgver
