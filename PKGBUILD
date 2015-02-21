@@ -18,6 +18,7 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	dwm.desktop
 	push.c
 	bstack.c
+	gaplessgrid.c
 	)
 _patches=(
           01-statuscolours.diff
@@ -29,10 +30,11 @@ _patches=(
          )
 source=(${source[@]} ${_patches[@]})
 md5sums=('8bb00d4142259beb11e13473b81c0857'
-         'efb460a95de531e12c7914480a307b3d'
+         '3278e7aa44cd57cc24e23f8d63e04202'
          '939f403a71b6e85261d09fc3412269ee'
          '689534c579b1782440ddcaf71537d8fd'
          '362e07f0f042875b84d7739d9d8855c4'
+         '4ba509b3b93f7b1418dc703c70de536f'
          '57b1a8f21b61c55f906d7cc075111613'
          'e3faeea09a554bbbce29c4d480b0ca41'
          '1f0244803c0188f1b6f4e5794e7f5ca2'
@@ -51,6 +53,7 @@ build() {
   cp $srcdir/config.h config.h
   cp $srcdir/push.c push.c
   cp $srcdir/bstack.c bstack.c
+  cp $srcdir/gaplessgrid.c gaplessgrid.c
   sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
   sed -i 's/^CFLAGS = -g/#CFLAGS += -g/g' config.mk
   sed -i 's/^#CFLAGS = -std/CFLAGS += -std/g' config.mk
