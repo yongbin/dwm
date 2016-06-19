@@ -16,23 +16,44 @@ install=dwm.install
 source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	config.h
 	dwm.desktop
-	dwm-6.0-pertag.diff
+	push.c
+	bstack.c
+	gaplessgrid.c
 	)
+_patches=(
+          01-statuscolours.diff
+          02-monoclecount.diff
+          03-noborder.diff
+          04-centredfloating.diff
+          05-scratchpad.diff
+          06-attachaside.diff
+         )
+source=(${source[@]} ${_patches[@]})
 md5sums=('8bb00d4142259beb11e13473b81c0857'
-         '20bda0b6469ac4129a2dcf4541a2d5a2'
+         '3278e7aa44cd57cc24e23f8d63e04202'
          '939f403a71b6e85261d09fc3412269ee'
-         'be94530c8592342bd99c7b5eeafdd176')
-
-prepare() {
-  cd $srcdir/$pkgname-$pkgver
-  msg "Patch to dwm-6.0-pertag.diff"
-  patch -Np1 -i "${srcdir}/dwm-6.0-pertag.diff"
-  echo
-}
+         '689534c579b1782440ddcaf71537d8fd'
+         '362e07f0f042875b84d7739d9d8855c4'
+         '4ba509b3b93f7b1418dc703c70de536f'
+         '57b1a8f21b61c55f906d7cc075111613'
+         'e3faeea09a554bbbce29c4d480b0ca41'
+         '1f0244803c0188f1b6f4e5794e7f5ca2'
+         'ed11483bfccbf65ff9714c0ca4e7bb23'
+         'bc6240f3adadf604a450f6375badec61'
+         'a92ee04c33b1082da61b55d3617249eb')
 
 build() {
   cd $srcdir/$pkgname-$pkgver
+
+  for p in "${_patches[@]}"; do
+    echo "=> $p"
+    patch < ../$p || return 1
+  done
+
   cp $srcdir/config.h config.h
+  cp $srcdir/push.c push.c
+  cp $srcdir/bstack.c bstack.c
+  cp $srcdir/gaplessgrid.c gaplessgrid.c
   sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
   sed -i 's/^CFLAGS = -g/#CFLAGS += -g/g' config.mk
   sed -i 's/^#CFLAGS = -std/CFLAGS += -std/g' config.mk
