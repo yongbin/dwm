@@ -13,16 +13,32 @@ license=('MIT')
 options=(zipman)
 depends=('libx11' 'libxinerama' 'libxft' 'freetype2' 'st' 'dmenu')
 install=dwm.install
-source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
-	config.h
-	dwm.desktop)
+source=(
+  http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
+  config.h
+  dwm.desktop
+  push.c
+)
+_patches=(
+  06-attachaside.diff
+)
+source=(${source[@]} ${_patches[@]})
 md5sums=('f0b6b1093b7207f89c2a90b848c008ec'
-         '80c4ef2a3eca0fe2d14e2203e3833200'
-         '939f403a71b6e85261d09fc3412269ee')
+         '967a86a5c4c29d58a56083c229506c7b'
+         '939f403a71b6e85261d09fc3412269ee'
+         '689534c579b1782440ddcaf71537d8fd'
+         'c53dd8ae98b22186c4cc6f0b4b55aa43')
 
 prepare() {
   cd $srcdir/$pkgname-$pkgver
+
+  for p in "${_patches[@]}"; do
+    echo "=> $p"
+    patch < ../$p || return 1
+  done
+
   cp $srcdir/config.h config.h
+  cp $srcdir/push.c push.c
 }
 
 build() {
