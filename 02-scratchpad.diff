@@ -1,7 +1,8 @@
-diff -up a/dwm.c b/dwm.c
---- a/dwm.c	2012-07-17 17:38:27.526859614 +1000
-+++ b/dwm.c	2012-07-17 17:42:30.875541281 +1000
-@@ -253,6 +253,7 @@ static int xerror(Display *dpy, XErrorEv
+diff --git a/dwm.c b/dwm.c
+index 0362114..b3f0a75 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -233,6 +233,7 @@ static int xerror(Display *dpy, XErrorEvent *ee);
  static int xerrordummy(Display *dpy, XErrorEvent *ee);
  static int xerrorstart(Display *dpy, XErrorEvent *ee);
  static void zoom(const Arg *arg);
@@ -9,16 +10,15 @@ diff -up a/dwm.c b/dwm.c
  
  /* variables */
  static const char broken[] = "broken";
-@@ -289,6 +290,8 @@ static Window root;
+@@ -269,6 +270,7 @@ static Window root;
+ 
  /* configuration, allows nested code to access above variables */
  #include "config.h"
- 
 +static unsigned int scratchtag = 1 << LENGTH(tags);
-+
+ 
  /* compile-time check if all tags fit into an unsigned int bit array. */
  struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };
- 
-@@ -1187,6 +1190,14 @@ manage(Window w, XWindowAttributes *wa)
+@@ -1063,6 +1065,15 @@ manage(Window w, XWindowAttributes *wa)
  	           && (c->x + (c->w / 2) < c->mon->wx + c->mon->ww)) ? bh : c->mon->my);
  	c->bw = borderpx;
  
@@ -30,10 +30,11 @@ diff -up a/dwm.c b/dwm.c
 +	}
 +	else
 +		c->tags &= TAGMASK;
++
  	wc.border_width = c->bw;
  	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
-     XSetWindowBorder(dpy, w, dc.colors[0][ColBorder]);
-@@ -2213,6 +2224,28 @@ zoom(const Arg *arg) {
+ 	XSetWindowBorder(dpy, w, scheme[SchemeNorm].border->pix);
+@@ -2120,6 +2131,28 @@ zoom(const Arg *arg)
  	pop(c);
  }
  
@@ -60,5 +61,5 @@ diff -up a/dwm.c b/dwm.c
 +}
 +
  int
- main(int argc, char *argv[]) {
- 	if(argc == 2 && !strcmp("-v", argv[1]))
+ main(int argc, char *argv[])
+ {
