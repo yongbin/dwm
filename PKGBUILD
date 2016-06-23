@@ -22,6 +22,7 @@ source=(
 _patches=(
   06-attachaside.diff
   05-scratchpad.diff
+  02-monoclecount.diff
 )
 source=(${source[@]} ${_patches[@]})
 md5sums=('f0b6b1093b7207f89c2a90b848c008ec'
@@ -29,7 +30,8 @@ md5sums=('f0b6b1093b7207f89c2a90b848c008ec'
          '939f403a71b6e85261d09fc3412269ee'
          '689534c579b1782440ddcaf71537d8fd'
          '15b1df9b8f74bc84bf3fc1749c160f75'
-         '2f5073f9d570c3255a2f60fb27bc49d2')
+         '2f5073f9d570c3255a2f60fb27bc49d2'
+         '5789b97a267a3f719924c624c8d51b0b')
 
 prepare() {
   cd $srcdir/$pkgname-$pkgver
