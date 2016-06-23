@@ -20,9 +20,9 @@ source=(
   push.c
 )
 _patches=(
-  06-attachaside.diff
-  05-scratchpad.diff
-  02-monoclecount.diff
+  01-attachaside.diff
+  02-scratchpad.diff
+  03-monoclecount.diff
 )
 source=(${source[@]} ${_patches[@]})
 md5sums=('f0b6b1093b7207f89c2a90b848c008ec'
